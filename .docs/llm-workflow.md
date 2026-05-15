@@ -18,7 +18,7 @@ Ask the user if plan is OK. If it is, then implement the fix or feature as descr
 
 ### Save review file
 
-For themes/plugins reviews after finishing review entire review needs to be saved as .md file in .reviews deirectory - `.reviews/{theme-name-slug}.md/`
+For themes/plugins reviews after finishing review entire review needs to be saved as .md file in `.reviews/` directory - `.reviews/{theme-name-slug}.md`
 Tone in review file needs to be polite and to sound like a human and experienced WordPress developer.
 
 ## 4. After Completing — Check Docs
@@ -30,7 +30,7 @@ Once the work is done, check `.docs/` to see if any documentation needs updating
 
 Update or create a doc file if the change introduces a new feature, modifies an existing behaviour that is documented, or adds something other developers or LLMs should know about.
 
-Very important: docs name must help future LLMs to find information fast. LLMs will never be able to read ALL docs or that will fill their context too fast. You must name files in a way that makes it super fast for LLMs to find documentation about projects. So they can just use ls or similar, find the file name, understand the category of the information, and consult and edit information as needed.
+Very important: docs name must help future LLMs to find information fast. LLMs will never be able to read ALL docs or that will fill their context too fast. You must name files in a way that makes it super fast for LLMs to find documentation about projects. They can just use ls or similar, find the file name, understand the category of the information, and consult and edit information as needed.
 
 Bad example: github-issues.md
 Good example: how-to-create-github-issues.md
