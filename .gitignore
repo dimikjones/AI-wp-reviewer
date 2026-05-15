@@ -1,0 +1,22 @@
+# 1. Ignore everything in the root directory
+*
+
+# 2. But do not ignore the .gitignore file itself (highly recommended)
+!.gitignore
+
+# 3. Allowlist specific files in the root
+!AGENTS.MD
+!LICENSE
+!README.md
+!opencode.json
+
+# 4. Allowlist specific directories
+# Note: To look inside an ignored directory, you must un-ignore the directory itself AND its contents.
+!docs/
+!docs/**
+
+!.opencode/
+!.opencode/**
+
+!.plans/
+!.plans/**
