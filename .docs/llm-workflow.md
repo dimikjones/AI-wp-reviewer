@@ -16,9 +16,16 @@ If no plan exists and the task is non-trivial, create one before proceeding.
 
 Ask the user if plan is OK. If it is, then implement the fix or feature as described in the plan.
 
-### Save review file
+### Save Review File - CRITICAL
 
-For themes/plugins reviews after finishing review entire review needs to be saved as .md file in `.reviews/` directory - `.reviews/{theme-name-slug}.md`
+⚠️ **IMPORTANT: Never save review files inside the theme/plugin folder being reviewed.**
+
+For themes/plugins reviews, after finishing the entire review, save the .md file in:
+- **Location:** `AI-wp-reviewer/.reviews/{theme-name-slug}.md`
+- **Filename:** Use the theme slug (e.g., `logistic-transport.md`, not `theme-review.md`)
+
+❌ **DON'T:** Save in `wp-content/themes/{theme-name}/theme-review.md`
+✅ **DO:** Save in `AI-wp-reviewer/.reviews/{theme-name-slug}.md`
 Tone in review file needs to be polite and to sound like a human and experienced WordPress developer.
 
 ## 4. After Completing — Check Docs
