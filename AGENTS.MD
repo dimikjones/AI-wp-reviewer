@@ -18,8 +18,9 @@ Instructions:
 
 Read the files in this folder for detailed project guidance:
 
-- `.docs/code-standards.md` — code standards for writing code (all plugins)
-- `.docs/theme-requirements.md` — Theme revew requirements
+- `.docs/theme-review-required.md` — Theme review requirements
+- `.docs/code-standards.md` — code standards for writing code (all themes/plugins)
+- `.docs/review-document-format.md` — examples for tone and format for finished review document file
 
 In general, read `.docs/` contents to find out more about coding practices and guidelines. The above list is not complete.
 
@@ -41,7 +42,7 @@ This WordPress install is used as a test environment so you can use XAMPP, but t
 
 `.docs/` files at the root level apply to **all themes/plugins**. Theme/Plugin-specific docs can live in subfolders:
 
-- `.docs/theme-soundwave-audio/` — for Soundwave-audio WordPress theme
+- `.plans/theme-soundwave-audio/` — for Soundwave-audio theme
 
 # Code Standards
 

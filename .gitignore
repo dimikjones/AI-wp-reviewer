@@ -12,8 +12,8 @@
 
 # 4. Allowlist specific directories
 # Note: To look inside an ignored directory, you must un-ignore the directory itself AND its contents.
-!docs/
-!docs/**
+!.docs/
+!.docs/**
 
 !.opencode/
 !.opencode/**
