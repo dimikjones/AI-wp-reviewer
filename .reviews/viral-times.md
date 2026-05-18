@@ -1,19 +1,14 @@
-= Theme Review: Viral Times by @hashthemes =
-
-'''Version:''' 1.0.05  
-'''Tested up to:''' 6.9  
-'''Requires PHP:''' 7.2  
-'''Review Date:''' 2026-05-15
-
-----
-
 Hi @hashthemes,
 
-Thank you for submitting Viral Times. I have reviewed your submission against the WordPress.org theme requirements. Below are the items that need to be addressed before the theme can be approved.
+Thank you for submitting Viral Times. I have reviewed your submission against the WordPress.org theme requirements.
+
+At this point, the theme does not fully meet the requirements and cannot be approved. Please review the requirements carefully, fix the issues listed below, and upload a new version for review.
+
+The Theme Review Team does not hard reject themes — we want you to resubmit your theme. However, when a ticket is closed as not approved, it loses its position in the review queue. When you submit an update, a new ticket will be created at the end of the queue.
 
 ----
 
-== Critical Issues (Must Be Fixed) ==
+== Required ==
 
 === 1. SQL Injection Vulnerability — attachment_url_to_postid() overrides core function ===
 
@@ -37,8 +32,6 @@ The current implementation presents two critical concerns:
 
 Please remove this function entirely and use WordPress core's `attachment_url_to_postid()` instead. Reference: https://developer.wordpress.org/reference/functions/attachment_url_to_postid/
 
-----
-
 === 2. Unfiltered HTML in Author Bios — Security Risk ===
 
 '''File:''' `inc/theme-hooks.php`, line 127
@@ -50,10 +43,6 @@ remove_filter('pre_user_description', 'wp_filter_kses');
 This removes the KSES filter from user descriptions, allowing authors to inject arbitrary HTML (including potentially malicious scripts) into their bios. This is a security concern, especially on multi-author sites.
 
 Please remove this line. If custom HTML is needed in author bios, kindly use `wp_kses_allowed_html()` to allow specific safe tags instead. Reference: https://developer.wordpress.org/reference/functions/wp_kses_allowed_html/
-
-----
-
-== Required Changes ==
 
 === 3. Missing == Description == Section in readme.txt ===
 
@@ -121,7 +110,7 @@ The wrapper function `breadcrumb_trail()` is not prefixed with the theme slug. W
 
 ----
 
-== Recommendations & Notes ==
+== Recommended ==
 
 === 11. Google Fonts — Privacy Consideration ===
 
@@ -129,13 +118,7 @@ The wrapper function `breadcrumb_trail()` is not prefixed with the theme slug. W
 
 The theme loads Google Fonts from Google's CDN. While the theme includes `wptt-webfont-loader.php` for local font loading, the default behavior loads fonts from Google's servers, which may have GDPR/privacy implications. I recommend enabling local font loading by default, or at least making it more prominent in the Customizer.
 
-=== 12. Screenshot Verification ===
-
-'''File:''' `screenshot.jpg` (214,921 bytes)
-
-Please verify that the screenshot is exactly 1200x900px (4:3 ratio) as required by the WordPress theme review guidelines.
-
-=== 13. extract() Usage ===
+=== 12. extract() Usage ===
 
 '''File:''' `inc/theme-functions.php`, line 25
 
@@ -146,17 +129,7 @@ function viral_times_comment($comment, $args, $depth) {
 
 The `extract()` function is used, which is discouraged due to potential variable collisions and security concerns. I recommend accessing `$args` directly instead.
 
-=== 14. Missing wp_body_open() Support Check ===
-
-'''File:''' `header.php`, line 18
-
-{{{
-<?php wp_body_open(); ?>
-}}}
-
-This is present and correct. Thank you for including this.
-
-=== 15. Skip Link Implementation ===
+=== 13. Skip Link Implementation ===
 
 '''File:''' `header.php`, line 23
 
@@ -168,15 +141,24 @@ The skip link is present. Please note there's a space before `#ht-content` in th
 
 ----
 
-== Summary ==
+== Notes ==
 
-||= Category =||= Count =||
-|| Critical || 2 ||
-|| Required || 8 ||
-|| Recommended || 5 ||
+=== Screenshot Verification ===
 
-The theme has a solid foundation with good feature support (WooCommerce, Gutenberg, Customizer, RTL, translation-ready). However, there are critical security issues that must be addressed before approval, particularly the SQL injection vulnerability and the core function override. The readme.txt also needs significant improvements to meet WordPress.org requirements.
+'''File:''' `screenshot.jpg` (214,921 bytes)
+
+Please verify that the screenshot is exactly 1200x900px (4:3 ratio) as required by the WordPress theme review guidelines. The screenshot must not look like an advertisement.
+
+=== wp_body_open() Implementation ===
+
+'''File:''' `header.php`, line 18
+
+{{{
+<?php wp_body_open(); ?>
+}}}
+
+This is present and correct. Thank you for including this.
 
 ----
 
-Thank you for your hard work on this. Once these issues are addressed, please upload the new version, and I will be happy to take another look. I look forward to your updated submission!
+Once these issues are addressed, please upload a new version, and I will be happy to take another look. I look forward to your updated submission!

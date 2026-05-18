@@ -29,35 +29,65 @@ Late Escaping: This is a critical security pillar. Always look for variables bei
 
 Polite Imperatives: Use "Please ensure," "I recommend," and "Kindly update," rather than "You must" or "You failed to."
 
+### Review Structure for Trac Comments
+
+All theme reviews must follow this standardized 4-part structure:
+
+#### 1. Welcome Wrapper
+Start with a greeting, let the author know what you're going to do, and state the outcome clearly.
+
+Example:
+{{{
+Hi @lxc047,
+
+Thank you for submitting your theme. I have had a quick look, and at this point, it does not fully meet the WordPress.org Theme Review requirements. Please review the requirements carefully, fix the issues, and upload a new version for review.
+
+The Theme Review Team does not hard reject themes — we want you to resubmit your theme. However, when a ticket is closed as not approved, it loses its position in the review queue. When you submit an update, a new ticket will be created at the end of the queue.
+}}}
+
+#### 2. Required
+List all required items. A theme cannot be approved until all of these are met. Use the `== Required ==` heading.
+
+#### 3. Recommended
+List all recommended items. These won't be grounds to not approve, but they are good theme practice. Use the `== Recommended ==` heading.
+
+#### 4. Notes
+Add design notes, additional information, or educational content. This cannot be something you reject for, but it can be a way to educate the author. Use the `== Notes ==` heading.
+
+#### 5. Next Steps
+Let the author know what is going to happen next. Keeping the author informed is important.
+
+Example:
+{{{
+Once these issues are addressed, please upload a new version, and I will be happy to take another look. I look forward to your updated submission!
+}}}
+
 ### Response Template Structure
-1. Opening
-Hi @[author_username],
-Thank you for submitting [Theme Name]. I have reviewed your submission against the WordPress.org theme requirements. Below are the items that need to be addressed before the theme can be approved.
 
-2. Required Changes (The "Must-Haves")
-Use sub-headers for clarity.
+When writing reviews, organize content using these standard headings:
 
-Security & Escaping: * Guideline: All data must be escaped late.
+== Required ==
+List critical issues that must be fixed:
+ * Security vulnerabilities
+ * Missing required files or sections
+ * Unescaped output
+ * Core function overrides
+ * Plugin territory issues
 
-Example Phrasing: "I noticed several instances where data is output without proper escaping. To ensure the security of the theme, please use functions like esc_html(), esc_attr(), or wp_kses_post() right before the data is echoed. For example, in [filename].php on line [number]..."
+== Recommended ==
+List improvements that are best practices but not blockers:
+ * Code quality improvements
+ * Performance optimizations
+ * Accessibility enhancements
+ * Privacy considerations
 
-Accessibility (A11y): * Focus: Keyboard navigation, skip links, and contrast.
+== Notes ==
+Educational information and observations:
+ * Design feedback
+ * Additional context
+ * Helpful resources
 
-Example Phrasing: "The 'Skip to Content' link is currently missing or not functioning correctly. Please ensure it is the first focusable element and properly targets the main content container. Reference: https://developer.wordpress.org/themes/functionality/accessibility/#skip-links"
-
-Internationalization (I18n):
-
-Focus: Text domains and translation-ready strings.
-
-Example Phrasing: "Some text strings are hardcoded and not ready for translation. Please wrap all user-facing strings in localized functions like __() or _e(). Specific files to check: [filenames]."
-
-3. Recommendations & Notes (The "Nice-to-Haves")
-These items are not strictly required for approval but are recommended for better user experience and code quality:
-
-Example: "Consider using get_search_form() instead of a hardcoded search form to allow for better extensibility via filters."
-
-4. Closing
-Thank you for your hard work on this. Once these issues are addressed, please upload the new version, and I will be happy to take another look. I look forward to your updated submission!
+The "Where & Why": Don't just say what is wrong. Provide the file name, line number (if possible), and a link to the official WordPress Handbook or Developer Documentation explaining the requirement.
 
 ### Technical Vocabulary to Use
 Late Escaping: Outputting data using an escaping function at the very last moment (the echo statement).
