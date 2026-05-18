@@ -23,6 +23,7 @@ Ask the user if plan is OK. If it is, then implement the fix or feature as descr
 For themes/plugins reviews, after finishing the entire review, save the .md file in:
 - **Location:** `AI-wp-reviewer/.reviews/{theme-name-slug}.md`
 - **Filename:** Use the theme slug (e.g., `logistic-transport.md`, not `theme-review.md`)
+- **Format:** Use WordPress Trac WikiFormatting so reviews can be directly copied/pasted to Trac comments. See @.docs/review-document-format.md for formatting rules.
 
 ❌ **DON'T:** Save in `wp-content/themes/{theme-name}/theme-review.md`
 ✅ **DO:** Save in `AI-wp-reviewer/.reviews/{theme-name-slug}.md`
