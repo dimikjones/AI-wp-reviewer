@@ -16,8 +16,8 @@ The main goal is to save time have more mental space to tackle with thngs that r
 ## General Guidelines
 
 1. Do not interact with agentic tools like you would with a human. Everything should always be neutral and instructive. Some files in this repo tell LLMs to do the same.
-2. Read every line of code that is generated when close to the PR stage.
-3. Use your expertise to steer AI towards the right direction, it will be necessary. Double check everything. Some plugins have bad code patterns that LLMs will imitate.
+2. Always read every line of code that is generated since AI is prone to errors or hallucinations.
+3. Use your expertise to steer AI towards the right direction, it will be necessary. Double check everything. Some themes/plugins have bad code patterns that LLMs will imitate and mark as good.
 4. Any reference to this repository to save tokens is beyond a matter of budget, it's mostly a matter of saving time and using context as best as possible.
 5. Don't expect these files to be something that will be done once and that's it. I suggest saving some time every week to experiment with these tools, and iterate your .md files to improve them. With the goal to save more time and improve output quality.
 6. Your development expertise plus the best LLM models and tools should save you development hours. If you notice LLM tools slowing you down, or you don't get a concrete bump in productivity, there's something at some stage of the process that needs to be addressed.
@@ -34,7 +34,6 @@ Prompt injection is a concrete risk. Do not let the agent run commands without a
 ## Requirements
 
 - A local environment where you and LLMs have easy access to WP CLI.
-- Since we use Github, `gh` installed and ready in the command line.
 - Ideally a system where you can easily run unix-based commands: Mac OS, Linux. A workaround on Windows with WSL is possible, but may be more painful to manage, or may require more work on more .md files to help LLMs understand when they should use powershell commands or not.
 - In general, it helps to choose tools around your workflow that have a CLI, since agents in the terminal as Open Code can interact with them easily.
 
@@ -42,7 +41,7 @@ Prompt injection is a concrete risk. Do not let the agent run commands without a
 
 At the moment, Opus 4.6 is the best model. Most of the resources in this repository have been used with Opus 4.6.
 
-Other good models (March 2026)
+Other good models (May 2026)
 
 - GLM 5
 - Sonnet 4.6
@@ -63,6 +62,7 @@ For the moment I recommend staying away from tools like the following, which sho
 
 - Open Code: I tend to prefer this one to other tools for most of the work. Mostly because it's neutral and independent from brands. It can be expanded with plugins.
 - Claude Code: I tend to use it when dealing with something more complex, mostly for budget reasons. One advantage compared to Open Code is that Claude Code often gets new features released and included without you having to do anything.
+- Cline: extension for VS code might be easier just for reviewing tasks end ease of prompting with project reference.
 
 ### Why using a CLI / Terminal User Interface for development
 
