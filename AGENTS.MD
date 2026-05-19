@@ -46,7 +46,7 @@ This WordPress install is used as a test environment so you can use XAMPP, but t
 
 # Code Standards
 
-For code standards for writing code, for ALL projects, refer to: @.docs/code-standards.md
+For code standards for writing code, for ALL projects, refer to: [code-standards.md](.docs/code-standards.md)
 
 ## Review Request Guidelines
 

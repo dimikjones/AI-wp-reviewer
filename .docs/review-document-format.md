@@ -89,6 +89,8 @@ Educational information and observations:
 
 The "Where & Why": Don't just say what is wrong. Provide the file name, line number (if possible), and a link to the official WordPress Handbook or Developer Documentation explaining the requirement.
 
+⚠️ **IMPORTANT: Do not change document flow to your liking, strictly follow [provided example](review-example.md).**
+
 ### Technical Vocabulary to Use
 Late Escaping: Outputting data using an escaping function at the very last moment (the echo statement).
 
