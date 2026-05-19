@@ -21,12 +21,12 @@ Ask the user if plan is OK. If it is, then implement the fix or feature as descr
 ⚠️ **IMPORTANT: Never save review files inside the theme/plugin folder being reviewed.**
 
 For themes/plugins reviews, after finishing the entire review, save the .txt file in:
-- **Location:** `AI-wp-reviewer/.reviews/{theme-name-slug}.txt`
-- **Filename:** Use the theme slug (e.g., `logistic-transport.txt`, not `theme-review.txt`)
+- **Location:** `AI-wp-reviewer/.reviews/{theme-name-slug}-{theme-version}.txt`
+- **Filename:** Use the theme slug (e.g., `logistic-transport-1.6.4.txt`, not `theme-review-1.6.4.txt`)
 - **Format:** Use WordPress Trac WikiFormatting so reviews can be directly copied/pasted to Trac comments. See [review-document-format.md](review-document-format.md) for formatting rules.
 
-❌ **DON'T:** Save in `wp-content/themes/{theme-name}/theme-review.txt`
-✅ **DO:** Save in `AI-wp-reviewer/.reviews/{theme-name-slug}.txt`
+❌ **DON'T:** Save in `wp-content/themes/{theme-name}/theme-review-1.6.4.txt`
+✅ **DO:** Save in `AI-wp-reviewer/.reviews/{theme-name-slug}-{theme-version}.txt`
 Tone in review file needs to be polite and to sound like a human and experienced WordPress developer.
 
 ## 4. After Completing — Check Docs
