@@ -62,17 +62,7 @@ The readme.txt file is missing the required `== Frequently Asked Questions ==` s
 
 The readme.txt file is missing the required `== Upgrade Notice ==` section. Please add this section to inform users about important updates.
 
-=== 6. Unescaped Output — viral_times_entry_tag() ===
-
-'''File:''' `inc/template-tags.php`, line 400
-
-{{{
-echo $tags_list;
-}}}
-
-The `$tags_list` variable is output without proper escaping. Please ensure all data is escaped late using functions like `wp_kses_post()` right before the data is echoed. Reference: https://developer.wordpress.org/themes/theme-security/data-sanitization-escaping/
-
-=== 7. Unescaped Output — Breadcrumb Trail ===
+=== 6. Unescaped Output — Breadcrumb Trail ===
 
 '''File:''' `inc/breadcrumbs.php`, line 239
 
@@ -82,7 +72,7 @@ echo $breadcrumb; // WPCS: XSS OK.
 
 The `// WPCS: XSS OK.` comment is used to bypass the WordPress Coding Standards check, but the output is not properly escaped. Please ensure the breadcrumb HTML is escaped using `wp_kses_post()` or `wp_kses_allowed_html()`.
 
-=== 8. Unescaped Output — Schema Attributes ===
+=== 7. Unescaped Output — Schema Attributes ===
 
 '''File:''' `inc/theme-functions.php`, line 498
 
@@ -92,13 +82,13 @@ return apply_filters('viral_times_schema_' . $place . '_attributes', $attrs); //
 
 The schema attributes are returned without escaping. Please ensure the output is escaped with `esc_attr()` or similar function before being used in HTML attributes.
 
-=== 9. Plugin Territory — Upsell in Demo Import ===
+=== 8. Plugin Territory — Upsell in Demo Import ===
 
 '''File:''' `inc/theme-hooks.php`, lines 244-462
 
 The `viral_times_premium_demo_config()` function contains hardcoded upsell links to "Viral Pro" premium version with external URLs. Please ensure upselling is not obtrusive and follows WordPress.org guidelines. Consider making these links optional or less prominent.
 
-=== 10. Unprefixed Function — breadcrumb_trail() ===
+=== 9. Unprefixed Function — breadcrumb_trail() ===
 
 '''File:''' `inc/breadcrumbs.php`, line 35
 
@@ -107,6 +97,20 @@ function breadcrumb_trail($args = array()) {
 }}}
 
 The wrapper function `breadcrumb_trail()` is not prefixed with the theme slug. While this is a third-party library, the wrapper function should be prefixed with `viral_times_` to avoid conflicts with other themes or plugins.
+
+=== 10. Beaver Builder $_GET Check Without Nonce ===
+
+'''File:''' `inc/widgets/widgets.php`, lines 245-248
+
+{{{
+if (class_exists('FLBuilder')) {
+    if (isset($_GET['fl_builder'])) {
+        add_action('viral_times_after_footer', 'viral_times_customizer_editor', 100);
+    }
+}
+}}}
+
+Direct `$_GET` access without nonce verification or capability check. Please ensure proper capability checks are in place.
 
 ----
 
@@ -120,14 +124,13 @@ The theme loads Google Fonts from Google's CDN. While the theme includes `wptt-w
 
 === 12. extract() Usage ===
 
-'''File:''' `inc/theme-functions.php`, line 25
+'''File:''' `inc/theme-functions.php`, line 25, `inc/widgets/widget-fields.php`, line 8, `inc/widgets/widgets.php`, lines 40, 64, 87
 
 {{{
-function viral_times_comment($comment, $args, $depth) {
-    extract($args, EXTR_SKIP);
+extract($args, EXTR_SKIP);
 }}}
 
-The `extract()` function is used, which is discouraged due to potential variable collisions and security concerns. I recommend accessing `$args` directly instead.
+The `extract()` function is used in multiple files, which is discouraged due to potential variable collisions and security concerns. I recommend accessing the array keys directly instead.
 
 === 13. Skip Link Implementation ===
 
@@ -145,7 +148,7 @@ The skip link is present. Please note there's a space before `#ht-content` in th
 
 === Screenshot Verification ===
 
-'''File:''' `screenshot.jpg` (214,921 bytes)
+'''File:''' `screenshot.png`
 
 Please verify that the screenshot is exactly 1200x900px (4:3 ratio) as required by the WordPress theme review guidelines. The screenshot must not look like an advertisement.
 
@@ -158,6 +161,10 @@ Please verify that the screenshot is exactly 1200x900px (4:3 ratio) as required 
 }}}
 
 This is present and correct. Thank you for including this.
+
+=== Licensing & Credits ===
+
+The `readme.txt` file properly credits all bundled third-party resources (Underscores, OwlCarousel, Superfish, Headroom.js, etc.) with their respective licenses. This is good practice.
 
 ----
 

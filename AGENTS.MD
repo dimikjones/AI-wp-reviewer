@@ -53,3 +53,33 @@ For code standards for writing code, for ALL projects, refer to: [code-standards
 - Similar to PR and Chat guidelines. Keep it brief and to the point.
 - DO NOT add a title in markdown format to your comments.
 - Always keep it short and concise, max 2 sentences. If users have doubts or questions, they will ask you to explain in detail.
+
+## Theme Review File Rules
+
+CRITICAL: When saving a theme review file, follow these rules exactly:
+
+### File Location
+- Save to: `AI-wp-reviewer/.reviews/{theme-slug}-{theme-version}.txt`
+- Example: `AI-wp-reviewer/.reviews/viral-times-1.0.05.txt`
+- NEVER save inside `wp-content/themes/` or use a different naming pattern.
+
+### File Format
+- Use WordPress Trac WikiFormatting (NOT Markdown)
+- Headers: `== Section ==`, `=== Subsection ===`
+- Bold: `'''bold text'''`
+- Code blocks: `{{{ multi-line code }}}`
+- Inline code: `{{{code}}}`
+- Lists: `* item` for bullets
+- Horizontal rules: `----`
+
+### Review Structure
+Follow the 4-part structure from `.docs/review-document-format.md`:
+1. Welcome wrapper — greeting, outcome statement
+2. Required — issues that block approval (use `== Required ==`)
+3. Recommended — best practices (use `== Recommended ==`)
+4. Notes — educational info (use `== Notes ==`)
+5. Next Steps — closing instructions
+
+### Reference
+- Always check `.docs/review-example-1.0.05.md` for the exact format to follow.
+- Always check `.docs/review-document-format.md` for tone and structure rules.
