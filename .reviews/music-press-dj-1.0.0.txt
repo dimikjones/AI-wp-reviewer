@@ -1,0 +1,95 @@
+Hi @seosbg,
+
+Thank you for submitting Music Press DJ. I have reviewed your child theme submission against the WordPress.org Theme Review requirements.
+
+At this point, the theme does not fully meet the requirements and cannot be approved. Please review the requirements carefully, fix the issues listed below, and upload a new version for review.
+
+The Theme Review Team does not hard-reject themes. Our goal is to help you get this approved and live in the repository. We highly encourage you to address these few remaining issues and submit an updated version for another look.
+
+----
+
+== Required ==
+
+=== 1. Unescaped Variable in HTML Attribute ===
+
+'''File:''' `functions.php`, from line 182 (multiple occurrences)
+
+{{{
+<div class="music-cover" onclick="toggleTrack('track-<?php echo $i; ?>', this)">
+}}}
+
+The variable `$i` is being output directly into an HTML attribute without escaping. While this is a numeric iterator, proper escaping should still be applied for security and coding standards compliance.
+
+Please update to: `<?php echo esc_attr( $i ); ?>` or `<?php echo absint( $i ); ?>`
+
+Reference: https://developer.wordpress.org/reference/functions/esc_attr/
+
+=== 2. Missing Upgrade Notice Section ===
+
+'''File:''' `readme.txt`
+
+The readme.txt file is missing the required `== Upgrade Notice ==` section. This section is required by WordPress.org to inform users about important updates.
+
+Please add this section. Example:
+
+{{{
+== Upgrade Notice ==
+
+= 1.0.0 =
+
+Initial release.
+}}}
+
+Additionally, there is a duplicate "Requires at least" header in the file (lines 5-6 show "5.1" and "5.6"). Please remove the duplicate and keep only one.
+
+=== 3. Incorrect Stylesheet Dependency ===
+
+'''File:''' `functions.php`, line 16
+
+{{{
+wp_enqueue_style(
+    'music_press_dj-child-style',
+    get_stylesheet_directory_uri() . '/style.css',
+    array( 'parent-style' )
+);
+}}}
+
+The child stylesheet declares a dependency on `'parent-style'`, but the parent stylesheet is registered with the handle `'music_press_dj-parent-style'` (line 9). Since the handles don't match, the dependency won't work correctly.
+
+Please update the dependency array to: `array( 'music_press_dj-parent-style' )`
+
+----
+
+== Recommended ==
+
+=== 4. Custom Hook Dependency ===
+
+'''File:''' `functions.php`, line 217
+
+{{{
+add_action( 'music_press_dj_after_header', 'music_press_dj_display_music_tracks' );
+}}}
+
+The theme hooks into a custom action `music_press_dj_after_header`. Please ensure this hook exists in the parent theme (Music Press). If the parent theme doesn't implement this hook, the music tracks section won't display.
+
+Consider wrapping this with a check: `if ( has_action( 'music_press_dj_after_header' ) )` or documenting this parent theme dependency in the readme.
+
+=== 5. Child Theme Version in Script Enqueue ===
+
+'''File:''' `functions.php`, lines 19-25
+
+{{{
+wp_enqueue_script(
+    'music_press_dj-child-script',
+    get_stylesheet_directory_uri() . '/script.js',
+    array(),
+    null,
+    true
+);
+}}}
+
+The script is enqueued with `null` for the version parameter. For better cache busting, consider using the theme version constant or file modification time instead of `null`.
+
+----
+
+Once these issues are addressed, please upload a new version, and I will be happy to take another look. I look forward to your updated submission!

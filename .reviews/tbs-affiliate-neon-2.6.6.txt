@@ -1,0 +1,168 @@
+Hi @tschlack,
+
+Thank you for submitting TBS Affiliate Neon. I have reviewed your theme against the WordPress.org Theme Review requirements.
+
+At this point, the theme does not fully meet the requirements and cannot be approved. Please review the requirements carefully, fix the issues listed below, and upload a new version for review.
+
+The Theme Review Team does not hard reject themes — we want you to resubmit your theme. However, when a ticket is closed as not approved, it loses its position in the review queue. When you submit an update, a new ticket will be created at the end of the queue.
+
+----
+
+== Required ==
+
+=== 1. Plugin Territory — Auto-Creating Pages on Theme Activation ===
+
+'''File:''' `inc/create-required-pages.php`
+
+The theme automatically creates "Datenschutzerklärung" and "Impressum" pages when activated via `after_switch_theme` hook. Creating content (pages, posts, custom post types) is considered plugin territory and is not allowed in themes.
+
+'''Current code:'''
+{{{{
+function tbs_neon_create_required_pages() {
+    // Creates privacy policy and imprint pages automatically
+    wp_insert_post( array(...) );
+}
+add_action( 'after_switch_theme', 'tbs_neon_create_required_pages' );
+}}}}
+
+Please remove this functionality. If you want to provide template content for legal pages, consider providing a documentation guide or a custom admin page with copy-paste instructions instead.
+
+----
+
+=== 2. Missing == Upgrade Notice == Section in readme.txt ===
+
+'''File:''' `readme.txt`
+
+The readme.txt file is missing the required `== Upgrade Notice ==` section. This section informs users about important updates and is mandatory for WordPress.org themes.
+
+Please add the Upgrade Notice section with at least one entry for the current version. Reference: https://make.wordpress.org/themes/handbook/review/required/ (readme.txt example)
+
+----
+
+=== 3. Version Number Inconsistencies ===
+
+'''Files:''' `style.css`, `readme.txt`, `functions.php`
+
+The theme has conflicting version numbers across files:
+* style.css: `2.6.6`
+* readme.txt (Stable tag): `2.3.2`
+* functions.php: `2.0.0`
+
+Please ensure all version numbers match the actual release version. The style.css version (2.6.6) should be used as the canonical version.
+
+----
+
+=== 4. Tested Up To Version Mismatch ===
+
+'''Files:''' `style.css` line 10, `readme.txt` line 6
+
+* style.css: `Tested up to: 6.8`
+* readme.txt: `Tested up to: 6.6`
+
+Please ensure the "Tested up to" version is consistent across all files and accurately reflects the WordPress version you've tested with.
+
+----
+
+=== 5. Undefined Function — tbs_neon_comment_callback() ===
+
+'''File:''' `comments.php`, line 32
+
+{{{{
+wp_list_comments( array(
+    'callback' => 'tbs_neon_comment_callback',
+) );
+}}}}
+
+The theme references `tbs_neon_comment_callback()` function which does not exist in the codebase. This will cause a fatal error when comments are displayed.
+
+Please either:
+* Define the callback function in your theme, or
+* Remove the custom callback and use WordPress default comment display
+
+----
+
+=== 6. Emoji in ARIA Label — Accessibility Issue ===
+
+'''File:''' `inc/related-products.php`, line 31
+
+{{{{
+<section class="tbs-related-products" aria-label="Ähnliche Produkte">
+}}}}
+
+While not a strict requirement violation, using emoji or special characters in aria-labels can cause unpredictable behavior with screen readers. Please use plain text labels for accessibility.
+
+----
+
+=== 7. Non-English Content in readme.txt ===
+
+'''File:''' `readme.txt`
+
+The readme.txt contains German text in the description, installation, and FAQ sections. WordPress.org requires the primary user facing language to be in English for the international community.
+
+Please provide an English version of the readme.txt. You can include German translations in a separate file or within the `languages/` folder.
+
+Also German text is present in some templates e.g. "Über den Autor", "Noch keine Biographie hinterlegt", Beiträge and probably more.
+
+----
+
+=== 8. Hardcoded URL Assumptions ===
+
+'''File:''' `footer.php`, lines 20-21
+
+{{{{
+<li><a href="<?php echo esc_url( home_url( '/shop' ) ); ?>">...</a></li>
+<li><a href="<?php echo esc_url( home_url( '/blog' ) ); ?>">...</a></li>
+}}}}
+
+The theme assumes specific permalink structures (/shop, /blog). Consider making these links dynamic or configurable through the Customizer.
+In simple words someone may use theme with Your homepage displays -> Your latest posts (In Settings -> Reading) so having /shop and /blog have no purpose. 
+
+My honest suggestion and probably simplest one is to register Footer Menu with register_nav_menus and then to call it in footer, something like this (note that this is just an example):
+{{{{
+if ( has_nav_menu( 'footer-menu' ) ) {
+    wp_nav_menu( array(
+        'theme_location' => 'footer-menu',
+        'container'      => 'nav',
+        'container_class'=> 'footer-navigation',
+        'fallback_cb'    => false, // Keeps it clean if no menu is set
+    ) );
+}
+}}}}
+
+----
+
+== Recommended ==
+
+=== 9. Inline CSS in Template Files ===
+
+'''File:''' `single.php`
+
+The single.php template contains extensive inline CSS styling (over 200 lines of style attributes and embedded `<style>` blocks). This makes the code difficult to maintain and violates separation of concerns.
+
+I recommend moving all CSS to the main style.css file or enqueueing a separate stylesheet for single posts.
+
+----
+
+=== 10. Text Domain Consistency ===
+
+'''File:''' `sidebar.php`, line 5
+
+The package header uses a different text domain format:
+
+{{{{
+ * @package TBS_Affiliate_Neon
+}}}}
+
+While the text domain is correctly set as `tbs-affiliate-neon` in style.css, please ensure consistency across all file headers.
+
+----
+
+== Notes ==
+
+=== Theme Styling ===
+
+After addressing issues above I higly reccomend importing Theme Unit Test data https://make.wordpress.org/themes/handbook/review/theme-unit-test/ and test layout and styling for possible improvements since on first glance it doesn't loog promising in some areas - just an example https://prnt.sc/jB1CvJoGQ6A2
+
+----
+
+Once these issues are addressed, please upload a new version, and I will be happy to take another look. I look forward to your updated submission!

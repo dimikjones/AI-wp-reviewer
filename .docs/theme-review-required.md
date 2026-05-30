@@ -196,7 +196,63 @@ Using WordPress.org in the Theme URI is reserved for the default themes (Twenty 
 
 Author URI is optional. If used, it must be a page or website about the author, author theme shop, or author project/development website.
 
-For a list of available tags, see Theme Tag List.
+For a list of available tags, see Theme Tag List:
+Here is a list of all of the tags that a theme can use and what the theme needs to fulfill to be allowed to use the tag.
+
+You can find the list of tags using API here: https://api.wordpress.org/themes/info/1.1/?action=feature_list
+
+Subject tags (max 3 tags)
+Tag	Requirement
+blog	Theme designed primarily for use on blogs
+e-commerce	Theme designed for use on e-commerce sites. Should most likely integrate with an e-commerce plugin
+education	Theme designed for the use on education-related sites
+entertainment	Theme designed for use on entertainment-related sites (e.g. movies, music, gaming)
+food-and-drink	Themes geared toward food-related web sites, such as restaurants, bars, etc.
+holiday	Themes built for seasonal or religious holidays
+news	Themes built for the use on news sites
+photography	Themes built for photobloggers and photographers
+portfolio	Themes meant for showing off portfolios
+Layout tags
+Tag	Requirement
+grid-layout	A theme has a layout such as masonry or tiles
+one-column	Layout with one column e.g. custom page template or default layout with one column (no sidebar)
+two-columns	Layout with two columns e.g. custom page template with content and sidebar
+three-columns	Layout with three columns e.g. custom page template with content and two sidebars
+four-columns	Layout with four columns e.g. custom page template with content and three sidebars
+left-sidebar	Has a left sidebar
+right-sidebar	Has a right sidebar
+Features tags
+Tag	Requirement
+accessibility-ready	Complies to the accessibility-ready requirements
+block-patterns	Block Editor Patterns – predefined block layouts (experimental)
+block-styles	Block Editor Styles – styles for core blocks
+buddypress	BuddyPress elements are properly integrated into the design – codex.buddypress.org/theme-compatibility/
+custom-background	Ability to change background image and color uses add_theme_support( 'custom-background' );
+custom-colors	Ability to customize colors from theme options(customizer) Important, the color customization must be something different from custom background implementation
+custom-header	Ability to change the header image uses add_theme_support( 'custom-header' );
+custom-logo	Support custom logos, use add_theme_support( 'custom-logo' );
+custom-menu	Support custom menus, use register_nav_menu()/register_nav_menus(), and wp_nav_menu()
+editor-style	Supports editor style in page & post editor backend, use add_editor_style();
+featured-image-header	Outputs a featured image via,add_theme_support( 'post-thumbnails' ) in place of the custom header image via add_theme_support( 'custom-header' ), on single-post view
+featured-images	Support feature images on a post in a blog, use add_theme_support( 'post-thumbnails' )
+flexible-header	Uses ‘flex-height’ and/or ‘flex-width’ parameter of add_theme_support( 'custom-header' );
+footer-widgets	The theme supports one or more dynamic sidebars in the footer
+front-page-post-form	Ability to add new posts from the site front-end (reference P2 Theme)
+full-site-editing	Full Site Editing – support for block content areas (experimental)
+full-width-template	A custom page template that uses a one-column design
+microformats	If the tag is included, microformats must be validated
+post-formats	Support post formats with clear visual distinction, use add_theme_support( 'post-formats' )
+rtl-language-support	No visual issues in RTL mode. RTL Tester is used for testing
+sticky-post	A visually distinctive style for sticky posts
+style-variations	Supports global style variations
+template-editing	Supports custom page templates with blocks. add_theme_support( 'block-templates' );
+theme-options	Has theme options (customizer)
+threaded-comments	Supports threaded comments
+translation-ready (required)	All visible texts (front and backend) are internationalized. The text domain is defined via load_theme_textdomain() and the language folder is added. The “Text Domain” tag is defined in the header of the style.css
+Editor specific tags
+Tag	Requirement
+block-styles	Themes must have custom styles for the core blocks on the front and back-end
+wide-blocks	Must support both .alignwide and .alignfull classes
 
 Readme.txt file
 
