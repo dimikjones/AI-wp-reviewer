@@ -346,7 +346,33 @@ If used in the theme, standard template files are required to be called by their
 header.php (via get_header() )
 footer.php (via get_footer() )
 sidebar.php (via get_sidebar() )
-searchform.php (via get_search_form() ) 11. Block themes
+searchform.php (via get_search_form() )
+
+Pagination
+
+Any template that loops through multiple posts (index.php, search.php, archive.php, category.php, tag.php, author.php, date.php, etc.) must include pagination navigation. Themes must not leave users without a way to reach additional results when the query returns more posts than the posts-per-page limit.
+
+Use `the_posts_navigation()`, `paginate_links()`, or equivalent WordPress pagination functions. Do not rely solely on "Older / Newer" links without proper page numbers.
+
+Static Front Page & Blog Posts Index
+
+Themes must correctly handle the static front page setting (Settings → Reading → A static page). When a user sets a static page as the front page:
+
+Use `is_front_page()` to detect the front page, not `is_home()`.
+Provide a `home.php` template for the blog posts index, rather than relying on `index.php` for both the front page and the blog listing.
+Do not force a blog listing in `index.php` when a static page is assigned as the front page. The `index.php` template should gracefully handle both cases or defer to the appropriate template hierarchy.
+
+Reference: https://make.wordpress.org/themes/2014/06/28/correct-handling-of-static-front-page-and-custom-blog-posts-index-template/
+
+Customizer Textarea Controls Limit
+
+Themes may include a maximum of three textarea controls in the WordPress Customizer. Exceeding this limit is considered a content creation issue and is not permitted for themes in the WordPress.org Theme Directory.
+
+Textarea controls allow unstructured multi-line input, which crosses into content creation territory. If a theme needs more than three free-form text inputs, those should be handled via plugin functionality or a dedicated admin page instead.
+
+This limit applies only to Customizer controls with `type => 'textarea'`. Standard single-line text inputs (`type => 'text'`), color pickers, checkboxes, selects, and other structured controls are not affected by this restriction.
+
+11. Block themes
 Include required files: style.css, readme.txt, theme.json, and index.html.
 Index.html needs to be placed inside a folder called templates.
 

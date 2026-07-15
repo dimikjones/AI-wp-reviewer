@@ -23,3 +23,9 @@
 
 !.reviews/
 !.reviews/**
+
+# Ignore all files inside .reviews
+.reviews/*
+
+# But do not ignore the .gitkeep file inside it
+!.reviews/.gitkeep
